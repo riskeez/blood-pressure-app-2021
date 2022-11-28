@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BPLog.App.Pages.LoginPage"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.TabBarIsVisible="False"
+             Shell.PresentationMode="ModalAnimated"
+             Shell.NavBarIsVisible="False"
+             Title="Login">
+    <ContentPage.Content>
+        <Grid>
+            <Grid IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}" Style="{StaticResource gridLoadingStyle}">
+                <StackLayout Spacing="10" Padding="20" VerticalOptions="CenterAndExpand">
+                    <Entry Placeholder="Enter your login" Text="{Binding Login}" HorizontalOptions="FillAndExpand" />
+
+                    <Entry Placeholder="Enter your password" Text="{Binding Password}" IsPassword="True"/>
+
+                    <Button Command="{Binding LoginCommand}" Margin="0,30,0,0" Text="Login" />
+                    <Button Command="{Binding RegisterCommand}" Style="{StaticResource secondaryButton}" 
+                            Margin="0,30,0,0" Text="Register" />
+                </StackLayout>
+            </Grid>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="100" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

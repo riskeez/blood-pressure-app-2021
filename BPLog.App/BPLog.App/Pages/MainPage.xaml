@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BPLog.App.Pages.MainPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             Title="BloodPressure App">
+    <StackLayout>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Label Text="Hi, how do you feel today?" FontSize="Medium" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsHighPressure, Converter={StaticResource InvertedBoolConverter}}"/>
+            <Label Text="Warning! Your blood pressure is high!" FontSize="Medium" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsHighPressure}"/>
+            <ListView HasUnevenRows="True" ItemsSource="{Binding List}" IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      IsPullToRefreshEnabled="true">
+            </ListView>
+        </StackLayout>
+        <StackLayout Padding="10" Orientation="Horizontal">
+            <Entry HorizontalTextAlignment="Center" Keyboard="Numeric" VerticalOptions="CenterAndExpand" 
+                              Placeholder="Systolic Pressure" Text="{Binding Systolic}"/>
+            <Entry HorizontalTextAlignment="Center" Keyboard="Numeric" VerticalOptions="CenterAndExpand" 
+                              Placeholder="Diastolic Pressure" Text="{Binding Diastolic}"/>
+            <Button Text="Add" BackgroundColor="{StaticResource OrangeColor}"
+                    TextColor="White" 
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"
+                    Command="{Binding AddRecordCommand}" />
+        </StackLayout>
+        
+    </StackLayout>
+
+</ContentPage>

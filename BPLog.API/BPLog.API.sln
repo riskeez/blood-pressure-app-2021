@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BPLog.API", "BPLog.API.csproj", "{E5A4905A-D987-4E49-855F-36E0C0C2E167}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BPLog.API.Tests", "BPLog.API.Tests\BPLog.API.Tests.csproj", "{B400D199-7DEF-49BF-9E14-69F438569CDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5A4905A-D987-4E49-855F-36E0C0C2E167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5A4905A-D987-4E49-855F-36E0C0C2E167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5A4905A-D987-4E49-855F-36E0C0C2E167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5A4905A-D987-4E49-855F-36E0C0C2E167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B400D199-7DEF-49BF-9E14-69F438569CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B400D199-7DEF-49BF-9E14-69F438569CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B400D199-7DEF-49BF-9E14-69F438569CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B400D199-7DEF-49BF-9E14-69F438569CDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8F8ECF8B-320F-44B7-BD17-9C4E7D713654}
+	EndGlobalSection
+EndGlobal

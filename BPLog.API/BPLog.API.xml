@@ -1,0 +1,285 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BPLog.API</name>
+    </assembly>
+    <members>
+        <member name="T:BPLog.API.Controllers.AuthController">
+            <summary>
+            List of endpoints for user authentication and registration
+            </summary>
+        </member>
+        <member name="M:BPLog.API.Controllers.AuthController.#ctor(BPLog.API.Services.IUserManager)">
+            <summary>
+            Controller constructor
+            </summary>
+            <param name="manager">User Manager service</param>
+        </member>
+        <member name="M:BPLog.API.Controllers.AuthController.Login(BPLog.API.Model.LoginRequest)">
+            <summary>
+            Authorizes user and generates token that can be used to access API
+            </summary>
+            <param name="request">Login credentials</param>
+            <returns>JWT access token</returns>
+        </member>
+        <member name="M:BPLog.API.Controllers.AuthController.RegisterUser(BPLog.API.Model.LoginRequest)">
+            <summary>
+            Registers a new user. Login must be unique
+            </summary>
+            <param name="request">New user credentials</param>
+            <returns></returns>
+        </member>
+        <member name="T:BPLog.API.Controllers.BloodPressureController">
+            <summary>
+            List of endpoints for interaction with blood pressure records
+            </summary>
+        </member>
+        <member name="M:BPLog.API.Controllers.BloodPressureController.#ctor(BPLog.API.Services.IBloodPressureService)">
+            <summary>
+            Blood Pressure Controller constructor
+            </summary>
+            <param name="service">Blood Pressure service</param>
+        </member>
+        <member name="M:BPLog.API.Controllers.BloodPressureController.GetLastRecord">
+            <summary>
+            Gets latest blood pressure measurement for the user
+            </summary>
+            <returns>Blood Pressure record</returns>
+        </member>
+        <member name="M:BPLog.API.Controllers.BloodPressureController.GetList(System.Int32,System.Int32,System.String)">
+            <summary>
+            Gets pressures with pagination and sorting
+            </summary>
+            <param name="pageSize">Size of a page</param>
+            <param name="page">Number of a page</param>
+            <param name="sort">Sorting (asc, desc). Desc by default</param>
+            <returns>Page object with data</returns>
+        </member>
+        <member name="M:BPLog.API.Controllers.BloodPressureController.SaveRecord(BPLog.API.Model.BloodPressureData)">
+            <summary>
+            Saves new blood pressure measurement to database for the user
+            </summary>
+            <param name="measurement">Measurement</param>
+            <returns></returns>
+        </member>
+        <member name="M:BPLog.API.Controllers.BloodPressureController.DeleteRecord(System.Int32)">
+            <summary>
+            Deletes specified 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BPLog.API.Controllers.IndexController">
+            <summary>
+            Default controller
+            </summary>
+        </member>
+        <member name="M:BPLog.API.Controllers.IndexController.Index">
+            <summary>
+            Returns current version of the API
+            </summary>
+            <returns>Version info</returns>
+        </member>
+        <member name="M:BPLog.API.Extensions.ClaimsPrincipalExtensions.GetUserId(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets user ID from principal claims
+            </summary>
+            <param name="principal"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BPLog.API.Extensions.IConfigurationExtensions">
+            <summary>
+            Extension methods to simplify reading of the API settings
+            </summary>
+        </member>
+        <member name="M:BPLog.API.Extensions.IConfigurationExtensions.GetPrivateKey(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Gets JWT private key from API configuration file
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BPLog.API.Extensions.IConfigurationExtensions.GetSqliteConnection(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Gets SQLite connection string from API configuration file
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BPLog.API.Helpers.QueryHelper">
+            <summary>
+            Helpers to simplify some query parsing work
+            </summary>
+        </member>
+        <member name="M:BPLog.API.Helpers.QueryHelper.GetParamSortOrder(System.String)">
+            <summary>
+            Gets Sort order from provided string
+            </summary>
+            <param name="valueWithSort">Value with sort condition (can have separate value or have it in the end)</param>
+            <returns>SortOrder (Descending by default)</returns>
+        </member>
+        <member name="T:BPLog.API.Mappers.BloodPressureMappers">
+            <summary>
+            Mappers that help to convert domain models to DTO models and vice versa
+            </summary>
+        </member>
+        <member name="M:BPLog.API.Mappers.BloodPressureMappers.ToModel(BPLog.API.Domain.BloodPressure)">
+            <summary>
+            Create DTO from domain entity
+            </summary>
+            <param name="entity">Domain level entity</param>
+            <returns></returns>
+        </member>
+        <member name="M:BPLog.API.Mappers.BloodPressureMappers.ToNewEntity(BPLog.API.Model.BloodPressureData,System.Int32)">
+            <summary>
+            Create new domain entity from provided model
+            </summary>
+            <param name="model">BloodPressure Model</param>
+            <param name="userId">User</param>
+            <returns></returns>
+        </member>
+        <member name="T:BPLog.API.Model.BloodPressureData">
+            <summary>
+            Blood Pressure measurement representation
+            </summary>
+        </member>
+        <member name="P:BPLog.API.Model.BloodPressureData.Id">
+            <summary>
+            Record Id in database
+            </summary>
+        </member>
+        <member name="P:BPLog.API.Model.BloodPressureData.DateUTC">
+            <summary>
+            Record date (UTC)
+            </summary>
+        </member>
+        <member name="P:BPLog.API.Model.BloodPressureData.Systolic">
+            <summary>
+            Blood overpressure 
+            </summary>
+        </member>
+        <member name="P:BPLog.API.Model.BloodPressureData.Diastolic">
+            <summary>
+            Blood underpressure
+            </summary>
+        </member>
+        <member name="T:BPLog.API.Model.BloodPressurePage">
+            <summary>
+            Blood Pressure measurements with pagination
+            </summary>
+        </member>
+        <member name="M:BPLog.API.Model.BloodPressurePage.GetEmptyPage">
+            <summary>
+            Gets empty page (Payload is empty array)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BPLog.API.Model.LoginRequest">
+            <summary>
+            User credentials model
+            </summary>
+        </member>
+        <member name="P:BPLog.API.Model.LoginRequest.Login">
+            <summary>
+            User login
+            </summary>
+        </member>
+        <member name="P:BPLog.API.Model.LoginRequest.Password">
+            <summary>
+            User password
+            </summary>
+        </member>
+        <member name="T:BPLog.API.Model.PageResponse`1">
+            <summary>
+            Abstract page model class that helps when pagination is needed
+            </summary>
+            <typeparam name="TModel"></typeparam>
+        </member>
+        <member name="P:BPLog.API.Model.PageResponse`1.TotalPages">
+            <summary>
+            Amount of pages
+            </summary>
+        </member>
+        <member name="P:BPLog.API.Model.PageResponse`1.Payload">
+            <summary>
+            Page data
+            </summary>
+        </member>
+        <member name="T:BPLog.API.Services.SortOrder">
+            <summary>
+            Sorting order
+            </summary>
+        </member>
+        <member name="M:BPLog.API.Services.IBloodPressureService.GetLastRecordByUserId(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Gets latest recorded blood pressure measurement for a user
+            </summary>
+            <param name="userId">User ID</param>
+            <param name="cancellationToken"></param>
+            <returns>Null if no data found</returns>
+        </member>
+        <member name="M:BPLog.API.Services.IBloodPressureService.DeleteRecordById(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Deletes a specified blood pressure record
+            </summary>
+            <param name="id">Blood Pressure Record Id</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BPLog.API.Services.IBloodPressureService.GetList(System.Int32,System.Int32,System.Int32,BPLog.API.Services.SortOrder,System.Threading.CancellationToken)">
+            <summary>
+            Gets data with pagination
+            </summary>
+            <param name="userId"></param>
+            <param name="pageSize"></param>
+            <param name="page"></param>
+            <param name="sortByDate"></param>
+            <param name="cancellationToken"></param>
+            <returns>Page with data</returns>
+        </member>
+        <member name="M:BPLog.API.Services.IBloodPressureService.SaveRecord(System.Int32,BPLog.API.Model.BloodPressureData,System.Threading.CancellationToken)">
+            <summary>
+            Add a new blood pressure record
+            </summary>
+            <param name="userId"></param>
+            <param name="measurement"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BPLog.API.Services.IUserManager">
+            <summary>
+            User management service for auth/user registration
+            </summary>
+        </member>
+        <member name="M:BPLog.API.Services.IUserManager.GetUserByLogin(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets user entity by provided login
+            </summary>
+            <param name="login">User login</param>
+            <param name="cancellationToken"></param>
+            <returns>User or null if no matches found</returns>
+        </member>
+        <member name="M:BPLog.API.Services.IUserManager.RegisterUser(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Registers new user with provided credentials
+            </summary>
+            <param name="login"></param>
+            <param name="password"></param>
+            <param name="cancellationToken"></param>
+            <returns>User or null if registration failed</returns>
+        </member>
+        <member name="M:BPLog.API.Services.IUserManager.Authenticate(BPLog.API.Domain.User,System.String)">
+            <summary>
+            Authenticates user and generates JWT token
+            </summary>
+            <param name="user">User entity</param>
+            <param name="password">User plain password</param>
+            <returns>JWT token or null if auth failed</returns>
+        </member>
+        <member name="T:BPLog.API.Services.UserManager">
+            <summary>
+            UserManager class that operates with database and generate JWTs
+            </summary>
+        </member>
+    </members>
+</doc>
